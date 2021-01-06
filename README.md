@@ -52,7 +52,8 @@ restart - Restarts Bot
 git clone https://github.com/wrecker3000/Heroku-Mirror-Bot
 cd Heroku-Mirror-Bot
 ```
-- Replace Your credentials.json to root directory of Heroku Mirror Bot which you cloned in your PC. [Procedure to get credentials](# Getting Google OAuth API credential.json file (Needed Only Once)) is discussed Below
+- Follow  Procedure to get credentials from Google OAuth API discussed Below or if you already have it, then continue steps from here
+- Replace Your credentials.json to root directory of Heroku Mirror Bot which you cloned in your PC.
 - Now delete token.pickle in Heroku-Mirror-Bot folder and on same Command Prompt/Terminal Window as Above, run:
 ```
 pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
