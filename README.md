@@ -52,7 +52,7 @@ restart - Restarts Bot
 git clone https://github.com/wrecker3000/Heroku-Mirror-Bot
 cd Heroku-Mirror-Bot
 ```
-- Replace Your credentials.json to root directory of Heroku Mirror Bot which you cloned in your PC. {Procedure to get credentials](## Getting Google OAuth API credential.json file (Needed Only Once)) is discussed Below
+- Replace Your credentials.json to root directory of Heroku Mirror Bot which you cloned in your PC. [Procedure to get credentials](# Getting Google OAuth API credential.json file (Needed Only Once)) is discussed Below
 - Now delete token.pickle in Heroku-Mirror-Bot folder and on same Command Prompt/Terminal Window as Above, run:
 ```
 pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
@@ -113,7 +113,7 @@ Note :- Above are the supported url shorteners. Except these only some url short
 
 Note: You can limit maximum concurrent downloads by changing the value of MAX_CONCURRENT_DOWNLOADS in aria.sh. By default, it's set to 4
  
-## Getting Google OAuth API credential.json file (Needed Only Once)
+# Getting Google OAuth API credential.json file (Needed Only Once)
 
 - Visit the [Google Cloud Console](https://console.developers.google.com/apis/credentials)
 - Go to the OAuth Consent tab, fill it, and save.
