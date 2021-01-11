@@ -517,7 +517,7 @@ class GoogleDriveHelper:
                             msg += f' | <a href="{siurl}"> 💥Index Link💥</a>'
                         else:
                             msg += f' | <a href="{url}"> 💥Index Link💥</a>'
-                msg += '\n \n'
+                msg += '\n'
 
             return msg
 
