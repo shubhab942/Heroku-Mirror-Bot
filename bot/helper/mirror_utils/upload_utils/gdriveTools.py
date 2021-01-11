@@ -483,7 +483,7 @@ class GoogleDriveHelper:
                                                fields='files(id, name, mimeType, size)',
                                                orderBy='modifiedTime desc').execute()
         if response["files"]:
-            msg + = f"<b>Search Results For {fileName} 👇</b>"
+            msg += f"<b>Search Results For {fileName} 👇</b>"
             msg += '\n \n'
 
             for file in response.get('files', []):
@@ -514,7 +514,7 @@ class GoogleDriveHelper:
                         url = requests.utils.requote_uri(f'{INDEX_URL}/{file.get("name")}')
                         if SHORTENER is not None and SHORTENER_API is not None:
                             siurl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, url)).text
-                           msg += f' | <a href="{siurl}"> 💥Index Link💥</a>'
+                            msg += f' | <a href="{siurl}"> 💥Index Link💥</a>'
                         else:
                             msg += f' | <a href="{url}"> 💥Index Link💥</a>'
                 msg += '\n \n'
