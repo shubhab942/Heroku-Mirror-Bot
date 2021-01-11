@@ -15,12 +15,8 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
 COPY . .
 COPY netrc /root/.netrc
-RUN chmod +x aria.sh
-
-RUN mkdir /root/bot/bin/
-WORKDIR /root/bot/
+RUN chmod +x aria.sh\
 
 CMD ["bash","start.sh"]
