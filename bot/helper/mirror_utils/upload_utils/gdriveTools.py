@@ -482,12 +482,7 @@ class GoogleDriveHelper:
                                                pageSize=200,
                                                fields='files(id, name, mimeType, size)',
                                                orderBy='modifiedTime desc').execute()
-        if response["files"]:
-            msg += 'Search Results For {fileName} 👇'
-            msg += '\n \n'
-        else:
-            return ""
-        
+
         for file in response.get('files', []):
             if file.get('mimeType') == "application/vnd.google-apps.folder":  # Detect Whether Current Entity is a Folder or File.
                 url = f"https://drive.google.com/drive/folders/{file.get('id')}"
@@ -507,6 +502,6 @@ class GoogleDriveHelper:
                 if SHORTENER is not None and SHORTENER_API is not None:
                     siurl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, iurl)).text
                     iurl = siurl
-                msg += f' | <a href="{iurl}"> 💥INDEX LINK💥</a>'
+                msg += f' | <a href="{iurl}">INDEX LINK</a>'
             msg += '\n \n'
         return msg
