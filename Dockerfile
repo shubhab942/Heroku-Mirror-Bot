@@ -20,4 +20,7 @@ COPY . .
 COPY netrc /root/.netrc
 RUN chmod +x aria.sh
 
+RUN mkdir /root/bot/bin/
+WORKDIR /root/bot/
+
 CMD ["bash","start.sh"]

@@ -140,6 +140,6 @@ def sendStatusMessage(msg, bot):
                 del status_reply_dict[msg.message.chat.id]
                 pass
         if len(progress) == 0:
-            progress = "Starting DL"
+            progress = "Starting Bot"
         message = sendMessage(progress, bot, msg)
         status_reply_dict[msg.message.chat.id] = message
