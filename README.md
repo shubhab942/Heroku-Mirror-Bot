@@ -1,5 +1,6 @@
 # !DEVELOPMENT PERMANENTLY STOPPED UNTIL FURTHER NEWS!
-BUSY NOW DUE TO EXAMS . I HAVE UPDATED THE REPO LATEST TO WORK WITH HEROKU FLAWLESSLY . FOLLOWING THE STEPS IS ENOUGH FOR ANYONE TO MAKE OWN BOT. Don't know when i will be back. B...Bye (◕‿◕)
+BUSY NOW DUE TO EXAMS . I HAVE UPDATED THE REPO LATEST TO WORK WITH HEROKU FLAWLESSLY . FOLLOWING THE STEPS IS ENOUGH FOR ANYONE TO MAKE OWN BOT.
+DON'T KNOW WHEN I WILL BE BACK....SEE YA(◕‿◕)
 
 # What is this repo about?
 This Repo is the most generalised verison of a Python mirror bot which can mirror files from anywhere on the Internet including Torrents to Your Google drive Account.
