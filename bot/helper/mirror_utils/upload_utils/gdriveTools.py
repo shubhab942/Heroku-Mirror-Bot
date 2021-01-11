@@ -499,7 +499,7 @@ class GoogleDriveHelper:
                 if SHORTENER is not None and SHORTENER_API is not None:
                     url = f"https://drive.google.com/drive/folders/{file.get('id')}"
                     surl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, url)).text
-                    msg += f'⁍ <a href={surl}</a>📁'
+                    msg += f'📁 <a href={surl}</a>'
                 else:
                     msg += f"📁<a href='https://drive.google.com/drive/folders/{file.get('id')}'>{file.get('name')}" \
                         f"</a>"
@@ -508,9 +508,9 @@ class GoogleDriveHelper:
                 if SHORTENER is not None and SHORTENER_API is not None:
                     url = f"https://drive.google.com/uc?id={file.get('id')}&export=download"
                     surl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, url)).text
-                    msg += f'📄 <a href={surl}</a>({get_readable_file_size(int(file.get('size')))})'
+                    msg += f"📄 <a href={surl}</a>({get_readable_file_size(int(file.get('size')))})"
                 else:
-                    msg += f"⁍ <a href='https://drive.google.com/uc?id={file.get('id')}" \
-                       f"&export=download'>{file.get('name')}</a>📄({get_readable_file_size(int(file.get('size')))})"
+                    msg += f"📄 <a href='https://drive.google.com/uc?id={file.get('id')}" \
+                       f"&export=download'>{file.get('name')}</a>({get_readable_file_size(int(file.get('size')))})"
             msg += '\n \n'
         return msg
