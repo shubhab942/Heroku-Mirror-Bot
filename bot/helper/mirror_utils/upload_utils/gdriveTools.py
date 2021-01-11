@@ -482,7 +482,7 @@ class GoogleDriveHelper:
                                                fields='files(id, name, mimeType, size)',
                                                orderBy='modifiedTime desc').execute()
         if response["files"]:
-            msg += f"<b>Search Results For {fileName} 👇</b>"
+            msg = f"<b>Search Results For {fileName} 👇</b>"
             msg += '\n \n'
         else:
             return ""
