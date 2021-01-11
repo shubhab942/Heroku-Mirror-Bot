@@ -482,18 +482,31 @@ class GoogleDriveHelper:
                                                pageSize=200,
                                                fields='files(id, name, mimeType, size)',
                                                orderBy='modifiedTime desc').execute()
+        if response["files"]:
+            msg += 'Search Results For {fileName} 👇'
+            msg += '\n \n'
+        else:
+            return ""
+        
         for file in response.get('files', []):
             if file.get('mimeType') == "application/vnd.google-apps.folder":  # Detect Whether Current Entity is a Folder or File.
-                msg += f"⁍ <a href='https://drive.google.com/drive/folders/{file.get('id')}'>{file.get('name')}" \
+                url = f"https://drive.google.com/drive/folders/{file.get('id')}"
+                if SHORTENER is not None and SHORTENER_API is not None:
+                    surl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, url)).text
+                    url = surl
+                msg += f"⁍ <a href={url}'>{file.get('name')}" \
                        f"</a> (folder📁)"
-                if INDEX_URL is not None:
-                    url = requests.utils.requote_uri(f'{INDEX_URL}/{file.get("name")}/')
-                    msg += f' | <a href="{url}"> 💥Index Link💥L</a>'
             else:
-                msg += f"⁍ <a href='https://drive.google.com/uc?id={file.get('id')}" \
-                       f"&export=download'>{file.get('name')}</a> ({get_readable_file_size(int(file.get('size')))})📄"
-                if INDEX_URL is not None:
-                    url = requests.utils.requote_uri(f'{INDEX_URL}/{file.get("name")}')
-                    msg += f' | <a href="{url}"> 💥Index Link💥</a>'
+                url = f"https://drive.google.com/uc?id={file.get('id')}&export=download"
+                if SHORTENER is not None and SHORTENER_API is not None:
+                    surl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, url)).text
+                    url = surl
+                msg += f"⁍ <a href={url}>{file.get('name')}</a> 📄({get_readable_file_size(int(file.get('size')))})📄"
+            if INDEX_URL is not None:
+                iurl = requests.utils.requote_uri(f'{INDEX_URL}/{file.get("name")}')
+                if SHORTENER is not None and SHORTENER_API is not None:
+                    siurl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, iurl)).text
+                    iurl = siurl
+                msg += f' | <a href="{iurl}"> 💥INDEX LINK💥</a>'
             msg += '\n \n'
         return msg
