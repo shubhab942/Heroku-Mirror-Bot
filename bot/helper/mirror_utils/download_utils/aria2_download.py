@@ -1,5 +1,4 @@
-from bot import aria2, download_dict_lock, STOP_DUPLICATE_MIRROR
-from bot.helper.mirror_utils.upload_utils.gdriveTools import GoogleDriveHelper
+from bot import aria2, download_dict_lock
 from bot.helper.ext_utils.bot_utils import *
 from .download_helper import DownloadHelper
 from bot.helper.mirror_utils.status_utils.aria_download_status import AriaDownloadStatus
@@ -16,21 +15,7 @@ class AriaDownloadHelper(DownloadHelper):
 
     @new_thread
     def __onDownloadStarted(self, api, gid):
-        sleep(1)
         LOGGER.info(f"onDownloadStart: {gid}")
-        dl = getDownloadByGid(gid)
-        download = api.get_download(gid)
-        self.name = download.name
-        sname = download.name
-        gdrive = GoogleDriveHelper(None)
-        smsg, button = gdrive.drive_list(sname)
-        if STOP_DUPLICATE_MIRROR:
-            if smsg:
-                dl.getListener().onDownloadError(f'😡😡File is already available in drive. You should have search before mirror any file. You might get ban if you do this again. This download has been stopped.\n\n')
-                print(dl.getListener())
-                sendMarkup(" Here are the search results:👇👇", dl.getListener().bot, dl.getListener().update, button)
-                aria2.remove([download])
-            return
         update_all_messages()
 
     def __onDownloadComplete(self, api: API, gid):
@@ -63,7 +48,7 @@ class AriaDownloadHelper(DownloadHelper):
 
     @new_thread
     def __onDownloadError(self, api, gid):
-        sleep(0.5) #sleep for split second to ensure proper dl gid update from onDownloadComplete
+        sleep(0.5)  # sleep for split second to ensure proper dl gid update from onDownloadComplete
         LOGGER.info(f"onDownloadError: {gid}")
         dl = getDownloadByGid(gid)
         download = api.get_download(gid)
@@ -84,11 +69,9 @@ class AriaDownloadHelper(DownloadHelper):
             download = aria2.add_magnet(link, {'dir': path})
         else:
             download = aria2.add_uris([link], {'dir': path})
-        if download.error_message: #no need to proceed further at this point
+        if download.error_message:  # no need to proceed further at this point
             listener.onDownloadError(download.error_message)
-            return 
+            return
         with download_dict_lock:
-            download_dict[listener.uid] = AriaDownloadStatus(download.gid,listener)
+            download_dict[listener.uid] = AriaDownloadStatus(download.gid, listener)
             LOGGER.info(f"Started: {download.gid} DIR:{download.dir} ")
-
-
