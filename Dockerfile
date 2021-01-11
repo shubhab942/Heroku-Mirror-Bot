@@ -20,4 +20,8 @@ COPY . .
 COPY netrc /root/.netrc
 RUN chmod +x aria.sh
 
+RUN git clone -b master https://github.com/wrecker3000/Heroku-Mirror-Bot /root/bot
+RUN mkdir /root/bot/bin/
+WORKDIR /root/bot/
+
 CMD ["bash","start.sh"]

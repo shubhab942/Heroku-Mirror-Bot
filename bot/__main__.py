@@ -13,7 +13,7 @@ from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.telegram_helper.message_utils import *
 from .helper.ext_utils.bot_utils import get_readable_file_size, get_readable_time
 from .helper.telegram_helper.filters import CustomFilters
-from .modules import authorize, list, cancel_mirror, mirror_status, mirror, clone, watch
+from .modules import authorize, list, cancel_mirror, mirror_status, mirror, clone, watch, delete
 
 
 @run_async
@@ -23,14 +23,20 @@ def stats(update, context):
     total = get_readable_file_size(total)
     used = get_readable_file_size(used)
     free = get_readable_file_size(free)
+    sent = get_readable_file_size(psutil.net_io_counters().bytes_sent)
+    recv = get_readable_file_size(psutil.net_io_counters().bytes_recv)
     cpuUsage = psutil.cpu_percent(interval=0.5)
     memory = psutil.virtual_memory().percent
-    stats = f'Bot Uptime: {currentTime}\n' \
-            f'Total disk space: {total}\n' \
-            f'Used: {used}\n' \
-            f'Free: {free}\n' \
-            f'CPU: {cpuUsage}%\n' \
-            f'RAM: {memory}%'
+    disk = psutil.disk_usage('/').percent
+    stats = f'<b>Bot Uptime:</b> {currentTime}\n' \
+            f'<b>Total disk space:</b> {total}\n' \
+            f'<b>Used:</b> {used}  ' \
+            f'<b>Free:</b> {free}\n\n' \
+            f'📊Data Usage📊\n<b>Upload:</b> {sent}\n' \
+            f'<b>Down:</b> {recv}\n\n' \
+            f'<b>CPU:</b> {cpuUsage}% ' \
+            f'<b>RAM:</b> {memory}% ' \
+            f'<b>Disk:</b> {disk}%'
     sendMessage(stats, context.bot, update)
 
 
@@ -71,6 +77,8 @@ def bot_help(update, context):
     help_string = f'''
 /{BotCommands.HelpCommand}: To get this message
 
+/restart : Restarts Bot
+
 /{BotCommands.MirrorCommand} [download_url][magnet_link]: Start mirroring the link to google drive
 
 /{BotCommands.UnzipMirrorCommand} [download_url][magnet_link] : starts mirroring and if downloaded file is any archive , extracts it to google drive
@@ -84,6 +92,8 @@ def bot_help(update, context):
 /{BotCommands.CancelMirror} : Reply to the message by which the download was initiated and that download will be cancelled
 
 /{BotCommands.StatusCommand}: Shows a status of all the downloads
+
+/{BotCommands.PingCommand}: Shows Ping Of Bot
 
 /{BotCommands.ListCommand} [search term]: Searches the search term in the Google drive, if found replies with the link
 

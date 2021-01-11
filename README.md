@@ -34,6 +34,7 @@ watch - mirror YT-DL support link
 tarwatch - mirror youtube playlist link as tar
 cancel - Cancel a task
 cancelall - Cancel all tasks
+del - Delete file from Drive
 list - [query] searches files in G-Drive - Results in Telegra.ph
 status - Get Mirror Status message
 stats - Bot Usage Stats
@@ -92,6 +93,18 @@ Fill up these fields. Meaning of each fields are discussed below:
 - **USER_SESSION_STRING** : Generate String session by [clicking here](https://generatestringsession.magneto261290.repl.run/) **OR** you can generate by running :
 ```
 python3 generate_string_session.py
+```
+- **STOP_DUPLICATE_MIRROR**: (Optional field) (Leave empty if unsure) if this field is set to `True` , bot will check file in drive, if it is present in drive, downloading will ne stopped. (Note - File will be checked using filename, not using filehash, so this feature is not perfect yet)
+- **SHORTENER**: (Optional field) if you want to use shortener in Gdrive and index link, fill shotener url here. Examples :-
+
+> exe.io
+> gplinks.in
+> shrinkme.io
+> urlshortx.com
+> shortzon.com
+
+Note :- Above are the supported url shorteners. Except these only some url shorteners are supported. If you want to use any other url shortener then first ask me that shortener is supported or not.
+- **SHORTENER_API**: Fill your shortener api key if you are using shortener.
 
 Note: You can limit maximum concurrent downloads by changing the value of MAX_CONCURRENT_DOWNLOADS in aria.sh. By default, it's set to 4
  
