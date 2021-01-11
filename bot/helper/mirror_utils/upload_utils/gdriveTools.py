@@ -483,9 +483,6 @@ class GoogleDriveHelper:
                                                fields='files(id, name, mimeType, size)',
                                                orderBy='modifiedTime desc').execute()
         if response["files"]:
-            msg += 'Search Results For {fileName} 👇'
-            msg += '\n \n'
-
             for file in response.get('files', []):
                 if file.get('mimeType') == "application/vnd.google-apps.folder":  # Detect Whether Current Entity is a Folder or File.
                     furl = f"https://drive.google.com/drive/folders/{file.get('id')}"
