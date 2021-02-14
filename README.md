@@ -71,7 +71,7 @@ If unverified message comes click on Continue anyway and link your Google Drive 
 
 **DEPLOY**
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/wrecker3000/Heroku-Mirror-Bot)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/shubhab942/Heroku-Mirror-Bot)
 
 - Now, need to create heroku app. For that, Either edit above Deploy to heroku button in readme.md if you can or goto this link simply:
 ```
